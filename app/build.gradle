@@ -1,16 +1,57 @@
 apply plugin: 'com.android.application'
 
+dependencies {
+    compile androidSupport.supportV4
+    compile androidSupport.appcompatV7
+    compile androidSupport.recyclerviewV7
+    compile androidSupport.design
+    compile androidSupport.constraintLayout
+
+    //region "Moxy"
+    compile libsGroup.moxy
+    provided libs.moxyCompiler
+    //endregion
+
+    //region "ButterKnife"
+    compile libs.butterknife
+      libs.butterknifeCompiler
+    //endregion
+
+    //----------TESTS----------//
+    // For local tests
+    testCompile libs.junit
+    testCompile libs.mockito
+    testCompile libs.hamcrest
+    // For instrumented tests
+    androidTestCompile libs.hamcrest
+    androidTestCompile androidSupport.testRules
+    androidTestCompile androidSupport.annotations
+    androidTestCompile androidSupport.testEspresso
+    androidTestCompile androidSupport.testEspressoIdling
+    androidTestCompile (androidSupport.testEspressoContrib) {
+        exclude module: 'espresso-core'
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-annotations'
+        exclude module: 'design'
+    }
+}
+
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+
     defaultConfig {
         applicationId "ru.ponomarev.teammanager"
-        minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode APP_VERSION_CODE
+        versionName APP_VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        minSdkVersion ANDROID_MIN_SDK_VERSION
+        targetSdkVersion ANDROID_TARGET_SDK_VERSION
     }
+
+    compileSdkVersion ANDROID_COMPILE_SDK_VERSION
+    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
+
     buildTypes {
         release {
             minifyEnabled false
@@ -19,10 +60,3 @@ android {
     }
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
-}

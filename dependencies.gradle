@@ -1,0 +1,139 @@
+/*
+    Описание зависимостей используемых в проекте.
+    Для упрощения процесса управления зависимостями заносим сюда по возможности описание всех зависимостей проекта
+
+    # Добавление зависимостей:
+
+        - Описать зависимость в одной из мап ниже
+
+            Для удобства восприятия в списке зависимостей выделены три мапы:
+                - androidSupport: зависимости для Android Support Library
+                - playServices: зависимости для Google Play Services
+                - libs: все остальные зависимости
+
+            Пример добавления зависимости в мапу:
+
+            libs = [
+                // other dependencies description // ,
+                newDependency : "group:id:version"
+            ]
+
+        - Можно создавать именованные наборы зависимостей, если необходимо совместнойе подключение нескольких библиотек
+            Для этих целей добавлена отдельная мапа libsGroup.
+            Теоретически можно описывать зависимости в группе напрямую,
+            но предпочтительнее сначал поисать зависимость в мапе libs и уже использовать данное описание при создании группы
+
+            libsGroup = [
+                // other groups // ,
+                newDependencyGroup : [ libs.lib1, libs.lib2, libs.lib3 ]
+            ]
+
+    # Использование описания зависимостей в модулях проекта:
+
+        - добавить зависимость в блок dependencies файла build.gradle соответствующего модуля
+
+            // Пример использования описания зависимостей в build.gradle модуля
+            dependencies {
+                compile libs.newDependency
+                compile libsGroup.newDependencyGroup
+                compile androidSupport.constraintLayout
+                compile playServices.maps
+            }
+
+    Небольшое примечание по поводу переиспользования зависимосте в блоках "buildscript"
+
+    Из-за особенностей инициализации gradle-скриптов описать зависимости используемые в секции buildscript здесь нельзя.
+    По этой причине такие зависимости (по сути плагины необходимые для работы скрипта) описаны в секции buildscript корневого build.gradle скрипта
+    Можно посмотреть как это там реализовано и использовать при необходимости в других gradle-скриптах
+*/
+
+//region "Versions of android Support library & Play services"
+def ANDROID_SUPPORT_LIBRARY_VERSION = '25.3.1'
+def ANDROID_CONSTRAINT_LAYOUT_VERSION = '1.0.2'
+//endregion
+
+//region "Versions of dependencies"
+def BUTTERKNIFE_VERSION = '8.6.0'
+def DAGGER_VERSION = '2.10'
+def FIND_BUGS = '2.0.1'
+def MOXY_VERSION = '1.5.3'
+//endregion
+
+//region "Versions of dependencies for testing"
+def ANDROID_SUPPORT_TEST_RUNNER_VERSION = '0.5'
+def ANDROID_ESPRESSO_VERSION = '2.2.2'
+def JUNIT_VERSION = '4.12'
+def HAMCREST_VERSION = '1.3'
+def MOCKITO_CORE_VERSION = '1.10.19'
+//endregion
+
+ext {
+
+    //region "Versions of app"
+    APP_VERSION_CODE = 1
+    APP_VERSION_NAME = "1.00"
+    //endregion
+
+    //region "Android SDK versions"
+    ANDROID_COMPILE_SDK_VERSION = 25
+    ANDROID_BUILD_TOOLS_VERSION = "25.0.2"
+    ANDROID_MIN_SDK_VERSION = 15
+    ANDROID_TARGET_SDK_VERSION = 23
+    //endregion
+
+    //region "Android support library dependencies"
+    androidSupport = [
+            supportV4          : "com.android.support:support-v4:$ANDROID_SUPPORT_LIBRARY_VERSION",
+            appcompatV7        : "com.android.support:appcompat-v7:$ANDROID_SUPPORT_LIBRARY_VERSION",
+            recyclerviewV7     : "com.android.support:recyclerview-v7:$ANDROID_SUPPORT_LIBRARY_VERSION",
+            design             : "com.android.support:design:$ANDROID_SUPPORT_LIBRARY_VERSION",
+            constraintLayout   : "com.android.support.constraint:constraint-layout:$ANDROID_CONSTRAINT_LAYOUT_VERSION",
+            annotations        : "com.android.support:support-annotations:$ANDROID_SUPPORT_LIBRARY_VERSION",
+
+            //region "Android support libs for testing"
+            testRules          : "com.android.support.test:rules:$ANDROID_SUPPORT_TEST_RUNNER_VERSION",
+            testEspresso       : "com.android.support.test.espresso:espresso-core:$ANDROID_ESPRESSO_VERSION",
+            testEspressoIdling : "com.android.support.test.espresso:espresso-idling-resource:$ANDROID_ESPRESSO_VERSION",
+            testEspressoContrib: "com.android.support.test.espresso:espresso-contrib:$ANDROID_ESPRESSO_VERSION",
+            //endregion
+    ]
+    //endregion
+
+    //region "Other dependencies"
+    libs = [
+            //region "App structure & architecture"
+
+            //region "Butterknife"
+            butterknife        : "com.jakewharton:butterknife:$BUTTERKNIFE_VERSION",
+            butterknifeCompiler: "com.jakewharton:butterknife-compiler:$BUTTERKNIFE_VERSION",
+            //endregion
+
+            //region "Dagger"
+            dagger             : "com.google.dagger:dagger:$DAGGER_VERSION",
+            daggerCompiler     : "com.google.dagger:dagger-compiler:$DAGGER_VERSION",
+            //endregion
+
+            //region "Moxy"
+            moxy               : "com.arello-mobile:moxy:$MOXY_VERSION", // MVP implementation
+            moxyAppCompat      : "com.arello-mobile:moxy-app-compat:$MOXY_VERSION",
+            moxyCompiler       : "com.arello-mobile:moxy-compiler:$MOXY_VERSION",
+            //endregion
+
+            //region "Tools"
+            findBugs           : "com.google.code.findbugs:jsr305:$FIND_BUGS",
+            //endregion
+
+            //region "Libs for testing"
+            junit              : "junit:junit:$JUNIT_VERSION",
+            hamcrest           : "org.hamcrest:hamcrest-library:$HAMCREST_VERSION",
+            mockito            : "org.mockito:mockito-core:$MOCKITO_CORE_VERSION",
+            //endregion
+    ]
+    //endregion
+
+    //region "Dependencies groups: sets of dependencies often used together"
+    libsGroup = [
+            moxy: [libs.moxy, libs.moxyAppCompat],
+    ]
+    //endregion
+}
