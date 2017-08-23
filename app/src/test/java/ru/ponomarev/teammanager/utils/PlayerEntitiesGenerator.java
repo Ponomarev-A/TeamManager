@@ -1,13 +1,13 @@
-package ru.ponomarev.teammanager.data.entity.utils;
+package ru.ponomarev.teammanager.utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import ru.ponomarev.teammanager.data.entity.HockeyPlayer;
-import ru.ponomarev.teammanager.data.entity.HockeyRole;
-import ru.ponomarev.teammanager.data.entity.IRole;
-import ru.ponomarev.teammanager.data.entity.Player;
+import ru.ponomarev.teammanager.domain.entity.HockeyPlayer;
+import ru.ponomarev.teammanager.domain.entity.HockeyRole;
+import ru.ponomarev.teammanager.domain.entity.IRole;
+import ru.ponomarev.teammanager.domain.entity.Player;
 
 /**
  * @author Пономарев Андрей

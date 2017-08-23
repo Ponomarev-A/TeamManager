@@ -1,4 +1,4 @@
-package ru.ponomarev.teammanager.data.entity;
+package ru.ponomarev.teammanager.domain.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

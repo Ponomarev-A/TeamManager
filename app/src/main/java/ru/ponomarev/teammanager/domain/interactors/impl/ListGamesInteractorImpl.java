@@ -2,7 +2,7 @@ package ru.ponomarev.teammanager.domain.interactors.impl;
 
 import java.util.List;
 
-import ru.ponomarev.teammanager.data.entity.Game;
+import ru.ponomarev.teammanager.domain.entity.Game;
 import ru.ponomarev.teammanager.domain.executor.IExecutor;
 import ru.ponomarev.teammanager.domain.executor.IMainThread;
 import ru.ponomarev.teammanager.domain.interactors.IListGamesInteractor;

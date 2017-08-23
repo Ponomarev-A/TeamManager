@@ -1,4 +1,4 @@
-package ru.ponomarev.teammanager.data.entity;
+package ru.ponomarev.teammanager.domain.entity;
 
 import com.google.common.base.Objects;
 
@@ -8,10 +8,10 @@ import com.google.common.base.Objects;
  */
 public abstract class Player {
 
-    private long mId;
     private final String mName;
     private final int mAge;
     private final IRole mRole;
+    private long mId;
 
 
     Player(String name, int age, IRole role) {

@@ -19,8 +19,8 @@ public abstract class AbstractInteractor implements IInteractor {
     protected IExecutor mThreadExecutor;
     protected IMainThread mMainThread;
 
-    protected volatile boolean mIsCanceled;
-    protected volatile boolean mIsRunning;
+    private volatile boolean mIsCanceled;
+    private volatile boolean mIsRunning;
 
     public AbstractInteractor(IExecutor threadExecutor, IMainThread mainThread) {
         mThreadExecutor = threadExecutor;
@@ -50,6 +50,7 @@ public abstract class AbstractInteractor implements IInteractor {
         mIsCanceled = false;
     }
 
+    @Override
     public void execute() {
 
         // mark this interactor as running

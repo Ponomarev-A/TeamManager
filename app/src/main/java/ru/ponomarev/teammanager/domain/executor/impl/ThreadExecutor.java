@@ -23,7 +23,7 @@ public class ThreadExecutor implements IExecutor {
     private static volatile ThreadExecutor sThreadExecutor;
     private ThreadPoolExecutor mThreadPoolExecutor;
 
-    private ThreadExecutor() {
+    public ThreadExecutor() {
         mThreadPoolExecutor = new ThreadPoolExecutor(
                 CORE_POOL_SIZE,
                 MAX_POOL_SIZE,

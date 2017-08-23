@@ -1,8 +1,8 @@
-package ru.ponomarev.teammanager.data.entity;
+package ru.ponomarev.teammanager.domain.entity;
 
 import org.junit.Test;
 
-import ru.ponomarev.teammanager.data.entity.utils.PlayerEntitiesGenerator;
+import ru.ponomarev.teammanager.utils.PlayerEntitiesGenerator;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
