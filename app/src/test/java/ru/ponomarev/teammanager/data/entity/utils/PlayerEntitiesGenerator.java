@@ -29,7 +29,7 @@ public class PlayerEntitiesGenerator {
         return list;
     }
 
-    private static Player createRandomPlayer(boolean includeId) {
+    public static Player createRandomPlayer(boolean includeId) {
         long id = Math.abs(RANDOM.nextLong());
         int age = Math.abs(RANDOM.nextInt(MAX_AGE));
         String name = createRandomString();

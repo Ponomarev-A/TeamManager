@@ -1,5 +1,7 @@
 package ru.ponomarev.teammanager.data.entity;
 
+import com.google.common.base.Objects;
+
 /**
  * @author Пономарев Андрей
  * Базовый класс игрока
@@ -36,5 +38,25 @@ public abstract class Player {
 
     public IRole getRole() {
         return role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Player player = (Player) o;
+        return id == player.id &&
+                age == player.age &&
+                Objects.equal(fullName, player.fullName) &&
+                Objects.equal(role, player.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id, fullName, age, role);
     }
 }
