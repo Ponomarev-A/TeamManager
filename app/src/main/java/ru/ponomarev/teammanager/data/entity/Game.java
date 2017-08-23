@@ -17,11 +17,20 @@ public class Game {
     private static final Locale LOCALE = Locale.ENGLISH;
 
 
+    private long mId;
     private Date mDateTime;
     private List<Player> mHomeTeam;
     private List<Player> mGuestTeam;
     private GameScore mGameScore;
 
+
+    public long getId() {
+        return mId;
+    }
+
+    public void setId(long id) {
+        mId = id;
+    }
 
     public String getDate() {
         return new SimpleDateFormat(PATTERN_DATE, LOCALE).format(mDateTime);
