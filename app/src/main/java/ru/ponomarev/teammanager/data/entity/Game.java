@@ -52,7 +52,7 @@ public class Game {
     }
 
     public String getGameScore() {
-        return mGameScore.get();
+        return mGameScore.getGameScoreAsString();
     }
 
     public void setGameScore(int homeTeamScore, int guestTeamScore) {

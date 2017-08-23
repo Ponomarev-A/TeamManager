@@ -15,7 +15,7 @@ class GameScore {
         mTeamBScore = teamBScore;
     }
 
-    String get() {
+    String getGameScoreAsString() {
         return mTeamAScore + " : " + mTeamBScore;
     }
 }
