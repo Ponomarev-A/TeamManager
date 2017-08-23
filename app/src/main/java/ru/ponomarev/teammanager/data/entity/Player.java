@@ -4,7 +4,7 @@ package ru.ponomarev.teammanager.data.entity;
  * @author Пономарев Андрей
  * Базовый класс игрока
  */
-abstract class Player {
+public abstract class Player {
 
     private long id;
     private final String fullName;

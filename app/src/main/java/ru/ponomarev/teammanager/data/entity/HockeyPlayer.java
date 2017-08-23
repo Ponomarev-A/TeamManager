@@ -5,16 +5,10 @@ package ru.ponomarev.teammanager.data.entity;
  * Класс игрока в хоккей
  */
 
-class HockeyPlayer extends Player {
+public class HockeyPlayer extends Player {
 
-    private enum HockeyRole implements IRole {
 
-        FORWARD,
-        DEFENDER,
-        GOALKEEPER
-    }
-
-    public HockeyPlayer(String name, int age, HockeyRole role) {
+    public HockeyPlayer(String name, int age, IRole role) {
         super(name, age, role);
     }
 }

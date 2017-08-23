@@ -2,8 +2,9 @@ package ru.ponomarev.teammanager.data.entity;
 
 /**
  * @author Пономарев Андрей
+ * Базовый интерфейс амплуа игрока
  */
 
-interface IRole {
+public interface IRole {
 
 }
