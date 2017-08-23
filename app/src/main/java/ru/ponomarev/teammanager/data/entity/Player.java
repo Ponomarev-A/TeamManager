@@ -8,36 +8,36 @@ import com.google.common.base.Objects;
  */
 public abstract class Player {
 
-    private long id;
-    private final String fullName;
-    private final int age;
-    private final IRole role;
+    private long mId;
+    private final String mName;
+    private final int mAge;
+    private final IRole mRole;
 
 
-    Player(String fullName, int age, IRole role) {
-        this.fullName = fullName;
-        this.age = age;
-        this.role = role;
+    Player(String name, int age, IRole role) {
+        this.mName = name;
+        this.mAge = age;
+        this.mRole = role;
     }
 
     public long getId() {
-        return id;
+        return mId;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.mId = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return mName;
     }
 
     public int getAge() {
-        return age;
+        return mAge;
     }
 
     public IRole getRole() {
-        return role;
+        return mRole;
     }
 
     @Override
@@ -49,14 +49,14 @@ public abstract class Player {
             return false;
         }
         Player player = (Player) o;
-        return id == player.id &&
-                age == player.age &&
-                Objects.equal(fullName, player.fullName) &&
-                Objects.equal(role, player.role);
+        return mId == player.mId &&
+                mAge == player.mAge &&
+                Objects.equal(mName, player.mName) &&
+                Objects.equal(mRole, player.mRole);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, fullName, age, role);
+        return Objects.hashCode(mId, mName, mAge, mRole);
     }
 }

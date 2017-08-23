@@ -17,8 +17,8 @@ public class HockeyPlayerTest {
 
         Player player = PlayerEntitiesGenerator.createRandomPlayer(true);
 
-        HockeyPlayer playerA = new HockeyPlayer(player.getFullName(), player.getAge(), player.getRole());
-        HockeyPlayer playerB = new HockeyPlayer(player.getFullName(), player.getAge(), player.getRole());
+        HockeyPlayer playerA = new HockeyPlayer(player.getName(), player.getAge(), player.getRole());
+        HockeyPlayer playerB = new HockeyPlayer(player.getName(), player.getAge(), player.getRole());
 
         playerA.setId(player.getId());
         playerB.setId(player.getId());
