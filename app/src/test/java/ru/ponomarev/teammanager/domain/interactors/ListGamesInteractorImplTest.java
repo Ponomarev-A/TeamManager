@@ -11,7 +11,7 @@ import ru.ponomarev.teammanager.data.threading.MainThreadImplTest;
 import ru.ponomarev.teammanager.domain.entity.Game;
 import ru.ponomarev.teammanager.domain.executor.IExecutor;
 import ru.ponomarev.teammanager.domain.executor.IMainThread;
-import ru.ponomarev.teammanager.domain.interactors.impl.ListGamesInteractorImpl;
+import ru.ponomarev.teammanager.domain.interactors.impl.GamesInteractorImpl;
 import ru.ponomarev.teammanager.domain.repository.IGamesRepository;
 import ru.ponomarev.teammanager.utils.GameEntitiesGenerator;
 
@@ -29,7 +29,7 @@ public class ListGamesInteractorImplTest {
     @Mock
     private IExecutor mExecutor;
     @Mock
-    private IListGamesInteractor.Callback mCallback;
+    private IGamesInteractor.Callback mCallback;
     @Mock
     private IGamesRepository mGamesRepository;
 
@@ -40,13 +40,13 @@ public class ListGamesInteractorImplTest {
     }
 
     @Test
-    public void testFilledListGames() throws Exception {
+    public void testLoadGames() throws Exception {
 
         List<Game> gamesList = GameEntitiesGenerator.createRandomGamesList(true);
 
         when(mGamesRepository.getAll()).thenReturn(gamesList);
 
-        ListGamesInteractorImpl interactor = new ListGamesInteractorImpl(
+        GamesInteractorImpl interactor = new GamesInteractorImpl(
                 mExecutor,
                 mMainThread,
                 mCallback,
@@ -56,28 +56,7 @@ public class ListGamesInteractorImplTest {
 
         verify(mGamesRepository).getAll();
         verifyNoMoreInteractions(mGamesRepository);
-        verify(mCallback).showGamesList(gamesList);
-        verifyNoMoreInteractions(mCallback);
-    }
-
-
-    @Test
-    public void testBlankGamesList() throws Exception {
-
-
-        when(mGamesRepository.getAll()).thenReturn(null);
-
-        ListGamesInteractorImpl interactor = new ListGamesInteractorImpl(
-                mExecutor,
-                mMainThread,
-                mCallback,
-                mGamesRepository
-        );
-        interactor.run();
-
-        verify(mGamesRepository).getAll();
-        verifyNoMoreInteractions(mGamesRepository);
-        verify(mCallback).showBlankWindow();
+        verify(mCallback).onGamesLoaded(gamesList);
         verifyNoMoreInteractions(mCallback);
     }
 }

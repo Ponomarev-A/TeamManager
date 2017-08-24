@@ -8,13 +8,11 @@ import ru.ponomarev.teammanager.domain.interactors.base.IInteractor;
 /**
  * Интерфейс интерактора для отображения списка игр
  */
-public interface IListGamesInteractor extends IInteractor {
+public interface IGamesInteractor extends IInteractor {
 
     interface Callback {
 
-        void showGamesList(List<Game> games);
-
-        void showBlankWindow();
+        void onGamesLoaded(List<Game> games);
     }
 
     // TODO: Add interactor methods here
