@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.List;
 
 import ru.ponomarev.teammanager.R;
+import ru.ponomarev.teammanager.data.storage.GamesRepositoryImpl;
 import ru.ponomarev.teammanager.data.threading.MainThreadImpl;
 import ru.ponomarev.teammanager.domain.entity.Game;
 import ru.ponomarev.teammanager.domain.executor.impl.ThreadExecutor;
@@ -25,7 +26,7 @@ public class GamesActivity extends AppCompatActivity implements IGamesPresenter.
                 ThreadExecutor.getInstance(),
                 MainThreadImpl.getInstance(),
                 this,
-                null     // TODO: implement games repository storage
+                new GamesRepositoryImpl()
         );
     }
 
@@ -38,26 +39,26 @@ public class GamesActivity extends AppCompatActivity implements IGamesPresenter.
 
     @Override
     public void showProgress() {
-
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override
     public void hideProgress() {
-
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override
     public void showError(String message) {
-
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override
     public void showGamesList(List<Game> games) {
-
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override
     public void showBlankList() {
-
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }
