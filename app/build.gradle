@@ -14,7 +14,7 @@ dependencies {
 
     //region "ButterKnife"
     compile libs.butterknife
-      libs.butterknifeCompiler
+    annotationProcessor libs.butterknifeCompiler
     //endregion
 
     //----------TESTS----------//
@@ -28,7 +28,7 @@ dependencies {
     androidTestCompile androidSupport.annotations
     androidTestCompile androidSupport.testEspresso
     androidTestCompile androidSupport.testEspressoIdling
-    androidTestCompile (androidSupport.testEspressoContrib) {
+    androidTestCompile(androidSupport.testEspressoContrib) {
         exclude module: 'espresso-core'
         exclude module: 'support-v4'
         exclude module: 'recyclerview-v7'
