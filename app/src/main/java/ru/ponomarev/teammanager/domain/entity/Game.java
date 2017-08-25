@@ -7,7 +7,7 @@ import java.util.Locale;
 
 /**
  * @author Пономарев Андрей
- * Базовый класс игрового матча
+ *         Базовый класс игрового матча
  */
 
 public class Game {
@@ -28,8 +28,9 @@ public class Game {
         return mId;
     }
 
-    public void setId(long id) {
+    public Game setId(long id) {
         mId = id;
+        return this;
     }
 
     public String getDate() {
@@ -40,31 +41,35 @@ public class Game {
         return new SimpleDateFormat(PATTERN_TIME, LOCALE).format(mDateTime);
     }
 
-    public void setDateTime(Date dateTime) {
+    public Game setDateTime(Date dateTime) {
         mDateTime = dateTime;
+        return this;
     }
 
     public List<Player> getHomeTeam() {
         return mHomeTeam;
     }
 
-    public void setHomeTeam(List<Player> homeTeam) {
+    public Game setHomeTeam(List<Player> homeTeam) {
         mHomeTeam = homeTeam;
+        return this;
     }
 
     public List<Player> getGuestTeam() {
         return mGuestTeam;
     }
 
-    public void setGuestTeam(List<Player> guestTeam) {
+    public Game setGuestTeam(List<Player> guestTeam) {
         mGuestTeam = guestTeam;
+        return this;
     }
 
     public String getGameScore() {
         return mGameScore.getGameScoreAsString();
     }
 
-    public void setGameScore(int homeTeamScore, int guestTeamScore) {
+    public Game setGameScore(int homeTeamScore, int guestTeamScore) {
         mGameScore = new GameScore(homeTeamScore, guestTeamScore);
+        return this;
     }
 }

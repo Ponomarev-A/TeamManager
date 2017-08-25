@@ -1,6 +1,7 @@
 package ru.ponomarev.teammanager.data.storage;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ru.ponomarev.teammanager.domain.entity.Game;
@@ -21,9 +22,9 @@ public class GamesRepositoryImpl implements IGamesRepository {
     @Override
     public List<Game> getAll() {
         List<Game> games = new ArrayList<>();
-        games.add(new Game());
-        games.add(new Game());
-        games.add(new Game());
+        games.add(new Game().setDateTime(new Date()).setGameScore(1, 0).setId(2));
+        games.add(new Game().setDateTime(new Date()).setGameScore(4, 5).setId(3));
+        games.add(new Game().setDateTime(new Date()).setGameScore(2, 1).setId(4));
 
         // let's simulate some network/database lag
         try {
