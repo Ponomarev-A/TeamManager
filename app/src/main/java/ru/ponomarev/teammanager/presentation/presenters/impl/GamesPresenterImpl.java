@@ -1,5 +1,7 @@
 package ru.ponomarev.teammanager.presentation.presenters.impl;
 
+import com.arellomobile.mvp.InjectViewState;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,25 +13,24 @@ import ru.ponomarev.teammanager.domain.interactors.impl.GamesInteractorImpl;
 import ru.ponomarev.teammanager.domain.repository.IGamesRepository;
 import ru.ponomarev.teammanager.presentation.presenters.IGamesPresenter;
 import ru.ponomarev.teammanager.presentation.presenters.base.AbstractPresenter;
+import ru.ponomarev.teammanager.presentation.views.IGamesView;
 
 /**
  * Реализация презентера для вывода списка игр
  */
-public class GamesPresenterImpl extends AbstractPresenter implements IGamesPresenter, IGamesInteractor.Callback {
+@InjectViewState(view = IGamesView.class)
+public class GamesPresenterImpl extends AbstractPresenter<IGamesView> implements IGamesPresenter, IGamesInteractor.Callback {
 
     @Inject
     IGamesRepository mGamesRepository;
 
-    private View mView;
-
-    public GamesPresenterImpl(View view) {
-        mView = view;
+    public GamesPresenterImpl() {
         TeamManagerApplication.getComponent().inject(this);
     }
 
     @Override
     public void resume() {
-        mView.showProgress();
+        getViewState().showProgress();
 
         // initialize the interactor
         GamesInteractorImpl interactor = new GamesInteractorImpl(
@@ -66,13 +67,13 @@ public class GamesPresenterImpl extends AbstractPresenter implements IGamesPrese
 
     @Override
     public void onGamesLoaded(List<Game> games) {
-        mView.hideProgress();
+        getViewState().hideProgress();
 
         if (games != null) {
             if (!games.isEmpty())
-                mView.showGamesList(games);
+                getViewState().showGamesList(games);
             else
-                mView.showBlankList();
+                getViewState().showBlankList();
         } else {
             onError("Games load failed");
         }

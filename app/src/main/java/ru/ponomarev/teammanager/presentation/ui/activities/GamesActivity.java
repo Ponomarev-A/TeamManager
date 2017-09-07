@@ -1,22 +1,25 @@
 package ru.ponomarev.teammanager.presentation.ui.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.ponomarev.teammanager.R;
+import ru.ponomarev.teammanager.TeamManagerApplication;
 import ru.ponomarev.teammanager.domain.entity.Game;
-import ru.ponomarev.teammanager.presentation.presenters.IGamesPresenter;
 import ru.ponomarev.teammanager.presentation.presenters.impl.GamesPresenterImpl;
 import ru.ponomarev.teammanager.presentation.ui.adapters.GameItemAdapter;
+import ru.ponomarev.teammanager.presentation.views.IGamesView;
 
-public class GamesActivity extends AppCompatActivity implements IGamesPresenter.View {
+public class GamesActivity extends MvpAppCompatActivity implements IGamesView {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -24,7 +27,9 @@ public class GamesActivity extends AppCompatActivity implements IGamesPresenter.
     @BindView(R.id.list_games)
     RecyclerView mListGames;
 
-    private GamesPresenterImpl mGamesPresenter;
+    @InjectPresenter
+    GamesPresenterImpl mGamesPresenter;
+
     private GameItemAdapter mAdapter;
 
     @Override
@@ -32,6 +37,7 @@ public class GamesActivity extends AppCompatActivity implements IGamesPresenter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
         ButterKnife.bind(this);
+        TeamManagerApplication.getComponent().inject(this);
 
         init();
     }
@@ -44,8 +50,6 @@ public class GamesActivity extends AppCompatActivity implements IGamesPresenter.
 
         mListGames.setLayoutManager(new LinearLayoutManager(this));
         mListGames.setAdapter(mAdapter);
-
-        mGamesPresenter = new GamesPresenterImpl(this);
     }
 
     @Override
