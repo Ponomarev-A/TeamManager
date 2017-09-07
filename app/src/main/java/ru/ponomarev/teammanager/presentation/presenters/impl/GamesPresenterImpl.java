@@ -2,9 +2,10 @@ package ru.ponomarev.teammanager.presentation.presenters.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import ru.ponomarev.teammanager.TeamManagerApplication;
 import ru.ponomarev.teammanager.domain.entity.Game;
-import ru.ponomarev.teammanager.domain.executor.IExecutor;
-import ru.ponomarev.teammanager.domain.executor.IMainThread;
 import ru.ponomarev.teammanager.domain.interactors.IGamesInteractor;
 import ru.ponomarev.teammanager.domain.interactors.impl.GamesInteractorImpl;
 import ru.ponomarev.teammanager.domain.repository.IGamesRepository;
@@ -16,16 +17,14 @@ import ru.ponomarev.teammanager.presentation.presenters.base.AbstractPresenter;
  */
 public class GamesPresenterImpl extends AbstractPresenter implements IGamesPresenter, IGamesInteractor.Callback {
 
-    private View mView;
-    private IGamesRepository mGamesRepository;
+    @Inject
+    IGamesRepository mGamesRepository;
 
-    public GamesPresenterImpl(IExecutor executor,
-                              IMainThread mainThread,
-                              View view,
-                              IGamesRepository gamesRepository) {
-        super(executor, mainThread);
+    private View mView;
+
+    public GamesPresenterImpl(View view) {
         mView = view;
-        mGamesRepository = gamesRepository;
+        TeamManagerApplication.getComponent().inject(this);
     }
 
     @Override

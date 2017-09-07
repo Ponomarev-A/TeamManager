@@ -1,6 +1,8 @@
 package ru.ponomarev.teammanager.presentation.presenters.base;
 
 
+import javax.inject.Inject;
+
 import ru.ponomarev.teammanager.domain.executor.IExecutor;
 import ru.ponomarev.teammanager.domain.executor.IMainThread;
 
@@ -10,11 +12,9 @@ import ru.ponomarev.teammanager.domain.executor.IMainThread;
  */
 public abstract class AbstractPresenter {
 
-    protected IExecutor mExecutor;
-    protected IMainThread mMainThread;
+    @Inject
+    public IExecutor mExecutor;
 
-    public AbstractPresenter(IExecutor executor, IMainThread mainThread) {
-        mExecutor = executor;
-        mMainThread = mainThread;
-    }
+    @Inject
+    public IMainThread mMainThread;
 }

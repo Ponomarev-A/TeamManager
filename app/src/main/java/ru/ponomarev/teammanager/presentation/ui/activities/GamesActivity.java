@@ -11,10 +11,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.ponomarev.teammanager.R;
-import ru.ponomarev.teammanager.data.storage.GamesRepositoryImpl;
-import ru.ponomarev.teammanager.data.threading.MainThreadImpl;
 import ru.ponomarev.teammanager.domain.entity.Game;
-import ru.ponomarev.teammanager.domain.executor.impl.ThreadExecutor;
 import ru.ponomarev.teammanager.presentation.presenters.IGamesPresenter;
 import ru.ponomarev.teammanager.presentation.presenters.impl.GamesPresenterImpl;
 import ru.ponomarev.teammanager.presentation.ui.adapters.GameItemAdapter;
@@ -48,12 +45,7 @@ public class GamesActivity extends AppCompatActivity implements IGamesPresenter.
         mListGames.setLayoutManager(new LinearLayoutManager(this));
         mListGames.setAdapter(mAdapter);
 
-        mGamesPresenter = new GamesPresenterImpl(
-                ThreadExecutor.getInstance(),
-                MainThreadImpl.getInstance(),
-                this,
-                new GamesRepositoryImpl()
-        );
+        mGamesPresenter = new GamesPresenterImpl(this);
     }
 
     @Override

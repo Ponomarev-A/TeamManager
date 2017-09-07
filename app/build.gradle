@@ -12,6 +12,11 @@ dependencies {
     provided libs.moxyCompiler
     //endregion
 
+    //region "Dagger 2"
+    compile libs.dagger
+    annotationProcessor libs.daggerCompiler
+    //endregion
+
     //region "ButterKnife"
     compile libs.butterknife
     annotationProcessor libs.butterknifeCompiler
