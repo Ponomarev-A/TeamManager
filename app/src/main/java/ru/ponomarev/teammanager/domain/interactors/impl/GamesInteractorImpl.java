@@ -2,9 +2,10 @@ package ru.ponomarev.teammanager.domain.interactors.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import ru.ponomarev.teammanager.TeamManagerApplication;
 import ru.ponomarev.teammanager.domain.entity.Game;
-import ru.ponomarev.teammanager.domain.executor.IExecutor;
-import ru.ponomarev.teammanager.domain.executor.IMainThread;
 import ru.ponomarev.teammanager.domain.interactors.IGamesInteractor;
 import ru.ponomarev.teammanager.domain.interactors.base.AbstractInteractor;
 import ru.ponomarev.teammanager.domain.repository.IGamesRepository;
@@ -14,15 +15,14 @@ import ru.ponomarev.teammanager.domain.repository.IGamesRepository;
  */
 public class GamesInteractorImpl extends AbstractInteractor implements IGamesInteractor {
 
-    private IGamesInteractor.Callback mCallback;
-    private IGamesRepository mGamesRepository;
+    @Inject
+    IGamesRepository mGamesRepository;
 
-    public GamesInteractorImpl(IExecutor threadExecutor,
-                               IMainThread mainThread,
-                               Callback callback, IGamesRepository repository) {
-        super(threadExecutor, mainThread);
+    private IGamesInteractor.Callback mCallback;
+
+    public GamesInteractorImpl(Callback callback) {
         mCallback = callback;
-        mGamesRepository = repository;
+        TeamManagerApplication.getComponent().inject(this);
     }
 
     @Override

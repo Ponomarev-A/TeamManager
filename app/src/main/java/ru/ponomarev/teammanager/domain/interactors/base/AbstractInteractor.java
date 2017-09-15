@@ -1,6 +1,8 @@
 package ru.ponomarev.teammanager.domain.interactors.base;
 
 
+import javax.inject.Inject;
+
 import ru.ponomarev.teammanager.domain.executor.IExecutor;
 import ru.ponomarev.teammanager.domain.executor.IMainThread;
 
@@ -16,16 +18,14 @@ import ru.ponomarev.teammanager.domain.executor.IMainThread;
  */
 public abstract class AbstractInteractor implements IInteractor {
 
-    protected IExecutor mThreadExecutor;
+    @Inject
+    IExecutor mThreadExecutor;
+
+    @Inject
     protected IMainThread mMainThread;
 
     private volatile boolean mIsCanceled;
     private volatile boolean mIsRunning;
-
-    public AbstractInteractor(IExecutor threadExecutor, IMainThread mainThread) {
-        mThreadExecutor = threadExecutor;
-        mMainThread = mainThread;
-    }
 
     /**
      * This method contains the actual business logic of the interactor. It SHOULD NOT BE USED DIRECTLY but, instead, a
