@@ -5,7 +5,6 @@ dependencies {
     compile androidSupport.appcompatV7
     compile androidSupport.recyclerviewV7
     compile androidSupport.design
-    compile androidSupport.constraintLayout
 
     //region "Moxy"
     compile libsGroup.moxy
