@@ -55,6 +55,12 @@ public class GameItemAdapter extends RecyclerView.Adapter<GameItemAdapter.GameIt
     }
 
 
+    public void clearGames() {
+        mGamesList.clear();
+
+        notifyDataSetChanged();
+    }
+
     static class GameItemViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.item_game_date_time)

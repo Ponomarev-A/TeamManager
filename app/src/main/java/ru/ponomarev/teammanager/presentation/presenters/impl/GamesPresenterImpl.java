@@ -17,8 +17,11 @@ import ru.ponomarev.teammanager.presentation.views.IGamesView;
 @InjectViewState(view = IGamesView.class)
 public class GamesPresenterImpl extends AbstractPresenter<IGamesView> implements IGamesPresenter, IGamesInteractor.Callback {
 
+    // IGamesPresenter >>>
+
     @Override
-    public void resume() {
+    public void downloadGamesList() {
+
         getViewState().showProgress();
 
         // initialize the interactor
@@ -26,28 +29,11 @@ public class GamesPresenterImpl extends AbstractPresenter<IGamesView> implements
 
         // run the interactor
         interactor.execute();
-
     }
 
-    @Override
-    public void pause() {
+    // IGamesPresenter <<<
 
-    }
-
-    @Override
-    public void stop() {
-
-    }
-
-    @Override
-    public void destroy() {
-
-    }
-
-    @Override
-    public void onError(String message) {
-
-    }
+    // IGamesInteractor.Callback >>>
 
     @Override
     public void onGamesLoaded(List<Game> games) {
@@ -56,10 +42,13 @@ public class GamesPresenterImpl extends AbstractPresenter<IGamesView> implements
         if (games != null) {
             if (!games.isEmpty())
                 getViewState().showGamesList(games);
-            else
-                getViewState().showBlankList();
+            else {
+                getViewState().hideGamesList();
+            }
         } else {
-            onError("Games load failed");
+            getViewState().showError("Games load failed");
         }
     }
+
+    // IGamesInteractor.Callback <<<
 }

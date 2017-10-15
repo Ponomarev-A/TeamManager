@@ -12,5 +12,6 @@ import ru.ponomarev.teammanager.presentation.ui.IBaseView;
 public interface IGamesView extends IBaseView {
 
     void showGamesList(List<Game> games);
-    void showBlankList();
+
+    void hideGamesList();
 }
